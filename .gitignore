@@ -1,5 +1,6 @@
 /node_modules
 /coverage
+/utils
 /package-lock.json
 
 # Build files.
