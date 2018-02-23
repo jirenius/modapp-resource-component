@@ -2,7 +2,7 @@ import Checkbox from 'modapp-base-component/Checkbox';
 import ModelListener from './utils/ModelListener';
 
 /**
- * A button component based on an model
+ * A checkbox component based on an model
  */
 class ModelCheckbox extends Checkbox {
 
