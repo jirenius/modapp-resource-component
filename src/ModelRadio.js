@@ -1,13 +1,13 @@
-import Radiobutton from 'modapp-base-component/Radiobutton';
+import Radio from 'modapp-base-component/Radio';
 import ModelListener from './utils/ModelListener';
 
 /**
- * A radiobutton component based on an model
+ * A radio component based on an model
  */
-class ModelRadiobutton extends Radiobutton {
+class ModelRadio extends Radio {
 
 	/**
-	 * Creates an instance of ModelRadiobutton
+	 * Creates an instance of ModelRadio
 	 * @param {object} [model] Optional model object
 	 * @param {ModelComponent~updateCallback} update Callback function called on model change and when component is rendered. If a boolean is returned, it will be used to check/uncheck the radiobutton.
 	 * @param {object} [opt] Optional parameters for the underlying modapp-base-component/Radiobutton.
@@ -48,4 +48,4 @@ class ModelRadiobutton extends Radiobutton {
 	}
 }
 
-export default ModelRadiobutton;
+export default ModelRadio;

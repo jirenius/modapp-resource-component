@@ -4,5 +4,10 @@
 
 import ModelComponent from './ModelComponent.js';
 import ModelTxt from './ModelTxt.js';
+import ModelButton from './ModelButton.js';
+import ModelCheckbox from './ModelCheckbox.js';
+import ModelInput from './ModelInput.js';
+import ModelRadio from './ModelRadio.js';
+import ModelTextarea from './ModelTextarea.js';
 
-export { ModelComponent, ModelTxt };
+export { ModelComponent, ModelTxt, ModelButton, ModelCheckbox, ModelInput, ModelRadio, ModelTextarea };
