@@ -2,6 +2,7 @@
 /coverage
 /utils
 /package-lock.json
+/.eslintrc
 
 # Build files.
 # Put in root folder
