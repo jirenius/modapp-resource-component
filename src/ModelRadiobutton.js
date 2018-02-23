@@ -1,9 +1,10 @@
-import ModelCheckbox from 'modapp-base-component/ModelCheckbox';
+import Radiobutton from 'modapp-base-component/Radiobutton';
+import ModelListener from './utils/ModelListener';
 
 /**
  * A radiobutton component based on an model
  */
-class ModelRadiobutton extends ModelCheckbox {
+class ModelRadiobutton extends Radiobutton {
 
 	/**
 	 * Creates an instance of ModelRadiobutton
@@ -12,7 +13,38 @@ class ModelRadiobutton extends ModelCheckbox {
 	 * @param {object} [opt] Optional parameters for the underlying modapp-base-component/Radiobutton.
 	 */
 	constructor(model, update, opt) {
-		super(model, update, opt);
+		if (typeof model === 'function') {
+			opt = update;
+			update = model;
+			model = null;
+		}
+
+		super(null, opt);
+
+		this.update = update;
+		this.ml = new ModelListener(model, this, this._changeHandler.bind(this));
+	}
+
+	render(el) {
+		this.ml.onRender();
+		return super.render(el);
+	}
+
+	unrender() {
+		super.unrender();
+		this.ml.onUnrender();
+	}
+
+	setModel(model) {
+		this.ml.setModel(model);
+		return this;
+	}
+
+	_changeHandler(m, c, changed) {
+		let result = this.update(m, c, changed);
+		if (typeof result === 'boolean') {
+			this.setChecked(result);
+		}
 	}
 }
 
