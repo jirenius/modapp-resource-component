@@ -1,6 +1,6 @@
 {
   "name": "modapp-resource-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Collection of components following the component, model, and collection interfaces of modapp.",
   "main": "./index.js",
   "scripts": {
