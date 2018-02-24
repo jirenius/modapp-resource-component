@@ -1,6 +1,6 @@
 {
   "name": "modapp-resource-component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Collection of components following the component, model, and collection interfaces of modapp.",
   "main": "./index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "babel-preset-env": "^1.6.1"
   },
   "dependencies": {
-    "modapp-base-component": "^1.0.1",
-    "modapp-l10n": "^1.0.1"
+    "modapp-base-component": "^1.0.2",
+    "modapp-l10n": "^1.0.2"
   }
 }
