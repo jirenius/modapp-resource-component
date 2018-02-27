@@ -2,6 +2,8 @@
 /coverage
 /utils
 /package-lock.json
+/yarn.lock
+/.eslintrc
 
 # Build files.
 # Put in root folder

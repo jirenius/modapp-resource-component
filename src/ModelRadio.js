@@ -1,17 +1,16 @@
-import Txt from 'modapp-base-component/Txt';
-import l10n from 'modapp-l10n';
+import Radio from 'modapp-base-component/Radio';
 import ModelListener from './utils/ModelListener';
 
 /**
- * A text component based on an model
+ * A radio component based on an model
  */
-class ModelTxt extends Txt {
+class ModelRadio extends Radio {
 
 	/**
-	 * Creates an instance of ModelTxt
+	 * Creates an instance of ModelRadio
 	 * @param {object} [model] Optional model object
-	 * @param {ModelComponent~updateCallback} update Callback function called on model change and when component is rendered. If a string is returned, it will set the text of the element.
-	 * @param {object} [opt] Optional parameters for the underlying modapp-base-component/Txt.
+	 * @param {ModelComponent~updateCallback} update Callback function called on model change and when component is rendered. If a boolean is returned, it will be used to check/uncheck the radiobutton.
+	 * @param {object} [opt] Optional parameters for the underlying modapp-base-component/Radiobutton.
 	 */
 	constructor(model, update, opt) {
 		if (typeof model === 'function') {
@@ -43,10 +42,10 @@ class ModelTxt extends Txt {
 
 	_changeHandler(m, c, changed) {
 		let result = this.update(m, c, changed);
-		if (typeof result === 'string' || l10n.isLocaleString(result)) {
-			this.setText(result);
+		if (typeof result === 'boolean') {
+			this.setChecked(result);
 		}
 	}
 }
 
-export default ModelTxt;
+export default ModelRadio;

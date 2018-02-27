@@ -1,17 +1,16 @@
-import Txt from 'modapp-base-component/Txt';
-import l10n from 'modapp-l10n';
+import Checkbox from 'modapp-base-component/Checkbox';
 import ModelListener from './utils/ModelListener';
 
 /**
- * A text component based on an model
+ * A checkbox component based on an model
  */
-class ModelTxt extends Txt {
+class ModelCheckbox extends Checkbox {
 
 	/**
-	 * Creates an instance of ModelTxt
+	 * Creates an instance of ModelCheckbox
 	 * @param {object} [model] Optional model object
-	 * @param {ModelComponent~updateCallback} update Callback function called on model change and when component is rendered. If a string is returned, it will set the text of the element.
-	 * @param {object} [opt] Optional parameters for the underlying modapp-base-component/Txt.
+	 * @param {ModelComponent~updateCallback} update Callback function called on model change and when component is rendered. If a boolean is returned, it will be used to check/uncheck the checkbox.
+	 * @param {object} [opt] Optional parameters for the underlying modapp-base-component/Checkbox.
 	 */
 	constructor(model, update, opt) {
 		if (typeof model === 'function') {
@@ -43,10 +42,10 @@ class ModelTxt extends Txt {
 
 	_changeHandler(m, c, changed) {
 		let result = this.update(m, c, changed);
-		if (typeof result === 'string' || l10n.isLocaleString(result)) {
-			this.setText(result);
+		if (typeof result === 'boolean') {
+			this.setChecked(result);
 		}
 	}
 }
 
-export default ModelTxt;
+export default ModelCheckbox;
