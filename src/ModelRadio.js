@@ -48,4 +48,5 @@ class ModelRadio extends Radio {
 	}
 }
 
+export { generateName } from 'modapp-base-component/Radio';
 export default ModelRadio;

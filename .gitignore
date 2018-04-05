@@ -1,11 +1,12 @@
 /node_modules
 /coverage
-/utils
 /package-lock.json
 /yarn.lock
-/.eslintrc
 
 # Build files.
-# Put in root folder
-/style
+/utils
 /*.js
+/*.tgz
+
+# Editor specifics
+.vscode/*
