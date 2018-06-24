@@ -1,4 +1,4 @@
-import Button from 'modapp-base-component/Button';
+import { Button } from 'modapp-base-component';
 import ModelListener from './utils/ModelListener';
 import l10n from 'modapp-l10n';
 

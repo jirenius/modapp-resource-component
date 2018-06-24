@@ -1,4 +1,4 @@
-import Txt from 'modapp-base-component/Txt';
+import { Txt } from 'modapp-base-component';
 import l10n from 'modapp-l10n';
 import ModelListener from './utils/ModelListener';
 

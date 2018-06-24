@@ -20,9 +20,9 @@ yarn add modapp-resource-component
 Import any selected component and use it.
 
 ```javascript
-import ModelTxt from 'modapp-resource-component/ModelTxt';
+import { ModelTxt } from 'modapp-resource-component';
 
-let txt = new ModelTxt({foo: "Hello World!"}, m => m.foo);
+let txt = new ModelTxt({ foo: "Hello World!" }, m => m.foo);
 txt.render(document.body);
 ```
 
