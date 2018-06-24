@@ -1,4 +1,4 @@
-import Checkbox from 'modapp-base-component/Checkbox';
+import { Checkbox } from 'modapp-base-component';
 import ModelListener from './utils/ModelListener';
 
 /**

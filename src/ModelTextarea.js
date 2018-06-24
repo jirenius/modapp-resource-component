@@ -1,4 +1,4 @@
-import Textarea from 'modapp-base-component/Textarea';
+import { Textarea } from 'modapp-base-component';
 import ModelListener from './utils/ModelListener';
 
 /**

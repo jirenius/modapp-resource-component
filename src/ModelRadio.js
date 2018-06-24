@@ -1,4 +1,4 @@
-import Radio from 'modapp-base-component/Radio';
+import { Radio } from 'modapp-base-component';
 import ModelListener from './utils/ModelListener';
 
 /**
@@ -48,5 +48,5 @@ class ModelRadio extends Radio {
 	}
 }
 
-export { generateName } from 'modapp-base-component/Radio';
+export { generateName } from 'modapp-base-component';
 export default ModelRadio;

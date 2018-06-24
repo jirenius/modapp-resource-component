@@ -1,4 +1,4 @@
-import Input from 'modapp-base-component/Input';
+import { Input } from 'modapp-base-component';
 import ModelListener from './utils/ModelListener';
 
 /**
