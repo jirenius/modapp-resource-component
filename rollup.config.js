@@ -23,7 +23,10 @@ export default {
 		}),
 		babel({
 			exclude: 'node_modules/**',
+<<<<<<< HEAD
 			plugins: [ 'external-helpers' ]
+=======
+>>>>>>> 4a5f772f33dd634515afd1009643b0ec23ec8f15
 		}),
 		commonjs(),
 		(process.env.NODE_ENV === 'production' && uglify()),
