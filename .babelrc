@@ -22,12 +22,6 @@
                     "modules": false
                 }]
             ],
-<<<<<<< HEAD
-=======
-            "plugins": [
-                "external-helpers"
-            ],
->>>>>>> 4a5f772f33dd634515afd1009643b0ec23ec8f15
             "ignore": [
                 "**/*.test.js"
             ]

@@ -1,10 +1,6 @@
 {
   "name": "modapp-resource-component",
-<<<<<<< HEAD
   "version": "1.2.1",
-=======
-  "version": "1.2.0",
->>>>>>> 4a5f772f33dd634515afd1009643b0ec23ec8f15
   "description": "Collection of components following the component, model, and collection interfaces of modapp.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -46,12 +42,7 @@
     "rollup-plugin-uglify": "^4.0.0"
   },
   "dependencies": {
-<<<<<<< HEAD
     "modapp-base-component": "^1.2.1",
     "modapp-l10n": "^1.2.2"
-=======
-    "modapp-base-component": "^1.2.0",
-    "modapp-l10n": "^1.2.0"
->>>>>>> 4a5f772f33dd634515afd1009643b0ec23ec8f15
   }
 }
