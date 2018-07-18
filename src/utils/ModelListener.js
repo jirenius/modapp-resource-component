@@ -1,4 +1,12 @@
 /**
+ * Update callback function
+ * @callback ModelListener~updateCallback
+ * @param {Model} model Model
+ * @param {Component} component Component received in ModelListener constructor.
+ * @param {?object} changed Model's change event parameters. Null if the callback is triggered by render or setModel.
+ */
+
+/**
  * A helper class for model components
  */
 class ModelListener {
