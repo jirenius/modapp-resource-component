@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "modapp-base-component": "^1.2.1",
-    "modapp-l10n": "^1.2.2"
+    "modapp-l10n": "^1.2.2",
+    "modapp-utils": "^1.2.1"
   }
 }
