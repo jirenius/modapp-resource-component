@@ -17,13 +17,10 @@ export default {
 	external: [ 'modapp-l10n', 'modapp-base-component' ],
 	plugins: [
 		resolve({
-			jsnext: true,
-			main: true,
-			browser: true,
+			mainFields: [ 'jsnext:main', 'main', 'browser' ]
 		}),
 		babel({
-			exclude: 'node_modules/**',
-			plugins: [ 'external-helpers' ]
+			exclude: 'node_modules/**'
 		}),
 		commonjs(),
 		(process.env.NODE_ENV === 'production' && uglify()),
