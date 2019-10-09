@@ -3,6 +3,7 @@
  */
 
 import CollectionList from './CollectionList.js';
+import CollectionSelect from './CollectionSelect.js';
 import ModelButton from './ModelButton.js';
 import ModelCheckbox from './ModelCheckbox.js';
 import ModelComponent from './ModelComponent.js';
@@ -13,6 +14,7 @@ import ModelTxt from './ModelTxt.js';
 
 export {
 	CollectionList,
+	CollectionSelect,
 	ModelButton,
 	ModelCheckbox,
 	ModelComponent,
