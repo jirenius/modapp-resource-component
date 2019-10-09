@@ -10,11 +10,10 @@ export default {
 		name: 'modapp-resource-component',
 		exports: 'named',
 		globals: {
-			'modapp-l10n': 'modapp-l10n',
 			'modapp-base-component': 'modapp-base-component'
 		}
 	},
-	external: [ 'modapp-l10n', 'modapp-base-component' ],
+	external: [ 'modapp-base-component' ],
 	plugins: [
 		resolve({
 			mainFields: [ 'jsnext:main', 'main', 'browser' ]

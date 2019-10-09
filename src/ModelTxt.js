@@ -1,5 +1,4 @@
 import { Txt } from 'modapp-base-component';
-import l10n from 'modapp-l10n';
 import ModelListener from './utils/ModelListener';
 
 /**
@@ -42,10 +41,7 @@ class ModelTxt extends Txt {
 	}
 
 	_changeHandler(m, c, changed) {
-		let result = this.update(m, c, changed);
-		if (typeof result === 'string' || l10n.isLocaleString(result)) {
-			this.setText(result);
-		}
+		this.setText(this.update(m, c, changed));
 	}
 }
 

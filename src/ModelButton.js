@@ -1,6 +1,5 @@
 import { Button } from 'modapp-base-component';
 import ModelListener from './utils/ModelListener';
-import l10n from 'modapp-l10n';
 
 /**
  * A button component based on an model
@@ -43,10 +42,7 @@ class ModelButton extends Button {
 	}
 
 	_changeHandler(m, c, changed) {
-		let result = this.update(m, c, changed);
-		if (typeof result === 'string' || l10n.isLocaleString(result)) {
-			this.setText(result);
-		}
+		this.setText(this.update(m, c, changed));
 	}
 }
 
