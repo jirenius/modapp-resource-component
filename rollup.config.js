@@ -10,20 +10,16 @@ export default {
 		name: 'modapp-resource-component',
 		exports: 'named',
 		globals: {
-			'modapp-l10n': 'modapp-l10n',
 			'modapp-base-component': 'modapp-base-component'
 		}
 	},
-	external: [ 'modapp-l10n', 'modapp-base-component' ],
+	external: [ 'modapp-base-component' ],
 	plugins: [
 		resolve({
-			jsnext: true,
-			main: true,
-			browser: true,
+			mainFields: [ 'jsnext:main', 'main', 'browser' ]
 		}),
 		babel({
-			exclude: 'node_modules/**',
-			plugins: [ 'external-helpers' ]
+			exclude: 'node_modules/**'
 		}),
 		commonjs(),
 		(process.env.NODE_ENV === 'production' && uglify()),
