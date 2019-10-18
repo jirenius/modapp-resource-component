@@ -177,7 +177,7 @@ class CollectionList extends RootElem {
 			this.components.push({ item, component, li });
 			this._setSubClassName(item, li);
 
-			this._rel.append(li);
+			this._rel.appendChild(li);
 			if (component) {
 				component.render(li);
 			}
@@ -222,7 +222,7 @@ class CollectionList extends RootElem {
 		li.style.display = 'none';
 		// Append last?
 		if (this.components.length - 1 === idx) {
-			this._rel.append(li);
+			this._rel.appendChild(li);
 		} else {
 			this._rel.insertBefore(li, this.components[idx + 1].li);
 		}
