@@ -11,3 +11,4 @@
 
 # Editor specifics
 .vscode/*
+.idea/*
