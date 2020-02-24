@@ -7,19 +7,19 @@ import { RootElem } from 'modapp-base-component';
 class ModelList extends RootElem {
 
 	/**
-     * Creates an instance of ModelList
-     * @param {object} model object
-     * @param {function} componentFactory  A factory function taking (key, value) as argument, returning a component.
-     * @param {object} [opt] Optional parameters.
-     * @param {string} [opt.tagName] Tag name (eg. 'ul') for the element. Defaults to 'div'.
-     * @param {string} [opt.className] Class name
-     * @param {object} [opt.attributes] Key/value attributes object
-     * @param {object} [opt.events] Key/value events object, where the key is the event name, and value is the callback.
-     * @param {string[]} [opt.exclude] Arrays of keys to exclude
-     * @param {string[]} [opt.include] Arrays of keys to include. If present, also determines order
-     * @param {string} [opt.subTagName] Tag name (eg. 'li') for the element. Defaults to 'div'.
-     * @param {string} [opt.subClassName] A factory function taking a collection item as argument, returning the className for the component.
-     */
+	 * Creates an instance of ModelList
+	 * @param {object} model object
+	 * @param {function} componentFactory  A factory function taking (key, value) as argument, returning a component.
+	 * @param {object} [opt] Optional parameters.
+	 * @param {string} [opt.tagName] Tag name (eg. 'ul') for the element. Defaults to 'div'.
+	 * @param {string} [opt.className] Class name
+	 * @param {object} [opt.attributes] Key/value attributes object
+	 * @param {object} [opt.events] Key/value events object, where the key is the event name, and value is the callback.
+	 * @param {string[]} [opt.exclude] Arrays of keys to exclude
+	 * @param {string[]} [opt.include] Arrays of keys to include. If present, also determines order
+	 * @param {string} [opt.subTagName] Tag name (eg. 'li') for the element. Defaults to 'div'.
+	 * @param {string} [opt.subClassName] A factory function taking a collection item as argument, returning the className for the component.
+	 */
 	constructor(model, componentFactory, opt) {
 		opt = Object.assign({ tagName: 'div' }, opt);
 
@@ -43,12 +43,12 @@ class ModelList extends RootElem {
 	}
 
 	/**
-     * Sets the model.
-     * If the component is rendered, the list will be rerendered with
-     * the new collection, without any animation.
-     * @param {?object} model map of items
-     * @returns {this}
-     */
+	 * Sets the model.
+	 * If the component is rendered, the list will be rerendered with
+	 * the new model, without any animation.
+	 * @param {?object} model map of items
+	 * @returns {this}
+	 */
 	setModel(model) {
 		model = model || null;
 
@@ -69,18 +69,18 @@ class ModelList extends RootElem {
 	}
 
 	/**
-     * Gets the current model
-     * @returns {?object}
-     */
+	 * Gets the current model
+	 * @returns {?object}
+	 */
 	getModel() {
 		return this.model;
 	}
 
 	/**
-     * Get the component for a model by index
-     * @param {number} idx Index if model
-     * @returns {?Component} Model component, or null if the list isn't rendered, or if index is out of bounds
-     */
+	 * Get the component for a model by index
+	 * @param {number} idx Index if model
+	 * @returns {?Component} Model component, or null if the list isn't rendered, or if index is out of bounds
+	 */
 	getComponent(idx) {
 		if (!this._rel) {
 			return null;
@@ -91,14 +91,14 @@ class ModelList extends RootElem {
 	}
 
 	/**
-     * Waits for the synchronization of the collection and component list to
-     * ensure the collection models matches the rendered components.
-     * Calling this method is necessary when calling getComponent after
-     * adding/removing items from the collections.
-     * Callback will never be called if the CollectionList isn't rendered, or
-     * if it unrenders before it has been synchronized.
-     * @param {function} callback Callback function called when collection and component list is synchronized.
-     */
+	 * Waits for the synchronization of the collection and component list to
+	 * ensure the collection models matches the rendered components.
+	 * Calling this method is necessary when calling getComponent after
+	 * adding/removing items from the collections.
+	 * Callback will never be called if the CollectionList isn't rendered, or
+	 * if it unrenders before it has been synchronized.
+	 * @param {function} callback Callback function called when collection and component list is synchronized.
+	 */
 	sync(callback) {
 		if (!this._rel) {
 			return;
@@ -148,7 +148,9 @@ class ModelList extends RootElem {
 
 		const ex = this.exclude;
 		if (ex !== null) {
-			keys = keys.filter(function(key) { return ex.includes(key); });
+			keys = keys.filter(function (key) {
+				return ex.includes(key);
+			});
 		}
 		return keys;
 	}
@@ -296,7 +298,7 @@ class ModelList extends RootElem {
 				component.render(li);
 				cont.token = anim.slideVertical(li, true, { reset: true });
 			} else {
-			    // replace component
+				// replace component
 				cont.component.unrender();
 				cont.component = component;
 				this.components[idx] = cont;
@@ -351,4 +353,5 @@ class ModelList extends RootElem {
 		}
 	}
 }
+
 export default ModelList;

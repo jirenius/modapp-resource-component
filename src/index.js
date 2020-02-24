@@ -12,7 +12,6 @@ import ModelList from './ModelList.js';
 import ModelRadio, { generateName } from './ModelRadio.js';
 import ModelTextarea from './ModelTextarea.js';
 import ModelTxt from './ModelTxt.js';
-import Pair from './Pair.js';
 
 export {
 	CollectionList,
@@ -25,6 +24,5 @@ export {
 	ModelRadio,
 	ModelTextarea,
 	ModelTxt,
-	Pair,
 	generateName
 };
