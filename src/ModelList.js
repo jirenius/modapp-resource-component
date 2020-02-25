@@ -243,7 +243,7 @@ class ModelList extends RootElem {
 		const props = this.model.props;
 
 		// for each key listed in the event, check what actually changed.
-		for (let key in Reflect.ownKeys(e)) {
+		for (let key in e) {
 			// find component that corresponds to the key, if any.
 			let cont = null;
 			for (let ct of this.components) {
