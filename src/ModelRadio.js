@@ -10,14 +10,24 @@ class ModelRadio extends Radio {
 	 * Creates an instance of ModelRadio
 	 * @param {object} [model] Optional model object
 	 * @param {ModelComponent~updateCallback} update Callback function called on model change and when component is rendered. If a boolean is returned, it will be used to check/uncheck the radiobutton.
+	 * @param {ModelComponent~changeCallback} change Callback function called on radio button change. Will give the checked state of the radio button and the model.
 	 * @param {object} [opt] Optional parameters for the underlying modapp-base-component/Radiobutton.
 	 */
-	constructor(model, update, opt) {
+	constructor(model, update, change, opt) {
 		if (typeof model === 'function') {
 			opt = update;
+			change = update;
 			update = model;
 			model = null;
 		}
+
+		if (!opt.events) {
+			opt.events = {};
+		}
+
+		opt.events.change = (e) => {
+			change(e._rootElem.el.checked, model);
+		};
 
 		super(null, opt);
 
