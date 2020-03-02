@@ -25,7 +25,7 @@ class CollectionList extends RootElem {
 
 		this.collection = null;
 		this.componentFactory = componentFactory;
-		this.subTagName = opt.subTagName || 'div';
+		this.subTagName = opt.subTagName === undefined ? "div" : opt.subTagName;
 		this.subClassName = opt.subClassName || null;
 
 		this.components = null;
@@ -173,7 +173,21 @@ class CollectionList extends RootElem {
 
 		for (let item of this.collection) {
 			let component = this.componentFactory(item, idx);
-			let li = document.createElement(this.subTagName);
+
+			let li;
+
+			if (this.subTagName != null) {
+				li = document.createElement(this.subTagName);
+
+				this._rel.appendChild(li);
+
+				if (component) {
+					component.render(li);
+				}
+			} else {
+				li = component.render(this._rel);
+			}
+
 			this.components.push({ item, component, li });
 			this._setSubClassName(item, li);
 
@@ -214,12 +228,23 @@ class CollectionList extends RootElem {
 
 		let { item, idx } = e;
 		let component = this.componentFactory(item, idx);
-		let li = document.createElement(this.subTagName);
+
+		let li;
+
+		if (this.subTagName !== null) {
+			li = document.createElement(this.subTagName);
+		} else {
+			let holder = new DocumentFragment();
+			component.render(holder);
+			li = holder.firstElementChild;
+		}
+
 		let cont = { model: item, component, li };
 		this.components.splice(idx, 0, cont);
 		this._setSubClassName(item, li);
 
 		li.style.display = 'none';
+
 		// Append last?
 		if (this.components.length - 1 === idx) {
 			this._rel.appendChild(li);
@@ -227,11 +252,14 @@ class CollectionList extends RootElem {
 			this._rel.insertBefore(li, this.components[idx + 1].li);
 		}
 
-		if (component) {
-			component.render(li);
+		if (this.subTagName !== null) {
+			if (component) {
+				component.render(li);
+			}
 		}
 
 		cont.token = anim.slideVertical(li, true, { reset: true });
+
 		this._checkSync();
 	}
 
@@ -272,7 +300,9 @@ class CollectionList extends RootElem {
 			component.unrender();
 		}
 
-		this._rel.removeChild(cont.li);
+		if (this.subTagName !== null) {
+			this._rel.removeChild(cont.li);
+		}
 	}
 
 	_setEventListener(on) {
