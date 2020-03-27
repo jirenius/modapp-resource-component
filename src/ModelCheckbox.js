@@ -10,18 +10,30 @@ class ModelCheckbox extends Checkbox {
 	 * Creates an instance of ModelCheckbox
 	 * @param {object} [model] Optional model object
 	 * @param {ModelComponent~updateCallback} update Callback function called on model change and when component is rendered. If a boolean is returned, it will be used to check/uncheck the checkbox.
+	 * @param {ModelComponent~changeCallback} change Callback function called on checkbox change. Will give the checked state of the checkbox and the model.
 	 * @param {object} [opt] Optional parameters for the underlying modapp-base-component/Checkbox.
 	 */
-	constructor(model, update, opt) {
+	constructor(model, update, change, opt) {
 		if (typeof model === 'function') {
-			opt = update;
+			opt = change;
+			change = update;
 			update = model;
 			model = null;
 		}
 
+		if (!opt.events) {
+			opt.events = {};
+		}
+
+		opt.events.change = (e) => {
+			change(e._rootElem.el.checked, model);
+		};
+
 		super(null, opt);
 
 		this.update = update;
+		this.change = change;
+
 		this.ml = new ModelListener(model, this, this._changeHandler.bind(this));
 	}
 
@@ -42,6 +54,7 @@ class ModelCheckbox extends Checkbox {
 
 	_changeHandler(m, c, changed) {
 		let result = this.update(m, c, changed);
+
 		if (typeof result === 'boolean') {
 			this.setChecked(result);
 		}
