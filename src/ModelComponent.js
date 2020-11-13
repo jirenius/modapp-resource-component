@@ -18,13 +18,16 @@ class ModelComponent {
 	 * @param {Model} [model] Optional model object
 	 * @param {Component} component Component
 	 * @param {ModelComponent~updateCallback} update Callback function called on model change and when component is rendered
+	 * @param {object} [opt] Optional parameters
+	 * @param {string} [opt.postrenderUpdate] Flag setting if call to update should be done after render. Defaults to false.
 	 */
-	constructor(model, component, update) {
+	constructor(model, component, update, opt) {
 		if (typeof component === 'function') {
 			update = component;
 			component = model;
 			model = null;
 		}
+		this.postrender = !!(opt && opt.postrenderUpdate);
 
 		this.ml = new ModelListener(model, component, update);
 	}
@@ -40,9 +43,19 @@ class ModelComponent {
 		return this;
 	}
 
+	/**
+	 * Returns the wrapped component
+	 * @returns {Component} Wrapped component
+	 */
+	getComponent() {
+		return this.ml.component;
+	}
+
 	render(el) {
-		this.ml.onRender();
-		return this.ml.component.render(el);
+		if (!this.postrender) this.ml.onRender();
+		let rel = this.ml.component.render(el);
+		if (this.postrender) this.ml.onRender();
+		return rel;
 	}
 
 	unrender() {
