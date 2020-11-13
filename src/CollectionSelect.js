@@ -7,7 +7,7 @@ import { RootElem, Txt } from 'modapp-base-component';
  * @property {string} [value] Option value.
  */
 
- /**
+/**
  * Option map callback
  * @callback CollectionSelect~optionMap
  * @param {*} item Item from the collection.
@@ -39,6 +39,7 @@ class CollectionSelect extends RootElem {
 
 		opt = Object.assign({ optionFactory: o => new Txt(o.text, {
 			tagName: 'option',
+			className: o.className,
 			attributes: {
 				value: o.value
 			}
@@ -83,6 +84,7 @@ class CollectionSelect extends RootElem {
 	/**
 	 * Sets the collection of options.
 	 * @param {Iterator<T>} collection Collection of options.
+	 * @returns {this}
 	 */
 	setCollection(collection) {
 		if (!super.getElement()) {

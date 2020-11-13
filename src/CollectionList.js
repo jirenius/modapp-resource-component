@@ -17,6 +17,8 @@ class CollectionList extends RootElem {
 	 * @param {object} [opt.events] Key/value events object, where the key is the event name, and value is the callback.
 	 * @param {string} [opt.subTagName] Tag name (eg. 'li') for the element. Defaults to 'div'.
 	 * @param {string} [opt.subClassName] A factory function taking a collection item as argument, returning the className for the component.
+	 * @param {bool} [opt.horizontal] Sets the slide animation to horizontal. Defaults to false.
+	 * @param {number} [opt.duration] Animation duration in milliseconds.
 	 */
 	constructor(collection, componentFactory, opt) {
 		opt = Object.assign({ tagName: 'div' }, opt);
@@ -27,6 +29,8 @@ class CollectionList extends RootElem {
 		this.componentFactory = componentFactory;
 		this.subTagName = opt.subTagName || 'div';
 		this.subClassName = opt.subClassName || null;
+		this.animType = opt.horizontal ? 'slideHorizontal' : 'slideVertical';
+		this.duration = opt.duration || null;
 
 		this.components = null;
 		this.removedComponents = [];
@@ -231,7 +235,7 @@ class CollectionList extends RootElem {
 			component.render(li);
 		}
 
-		cont.token = anim.slideVertical(li, true, { reset: true });
+		cont.token = anim[this.animType](li, true, { reset: true, duration: this.duration });
 		this._checkSync();
 	}
 
@@ -248,14 +252,15 @@ class CollectionList extends RootElem {
 		this.removedComponents.push(cont);
 
 		anim.stop(cont.token);
-		cont.token = anim.slideVertical(cont.li, false, {
+		cont.token = anim[this.animType](cont.li, false, {
 			callback: () => {
 				let idx = this.removedComponents.indexOf(cont);
 				if (idx >= 0) {
 					this.removedComponents.splice(idx, 1);
 					this._removeComponent(cont);
 				}
-			}
+			},
+			duration: this.duration
 		});
 
 		this._checkSync();
