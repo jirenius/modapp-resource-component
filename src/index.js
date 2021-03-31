@@ -8,6 +8,7 @@ import CollectionSelect from './CollectionSelect.js';
 import ModelButton from './ModelButton.js';
 import ModelCheckbox from './ModelCheckbox.js';
 import ModelComponent from './ModelComponent.js';
+import ModelHtml from './ModelHtml.js';
 import ModelInput from './ModelInput.js';
 import ModelList from './ModelList.js';
 import ModelRadio, { generateName } from './ModelRadio.js';
@@ -23,6 +24,7 @@ export {
 	ModelButton,
 	ModelCheckbox,
 	ModelComponent,
+	ModelHtml,
 	ModelInput,
 	ModelList,
 	ModelRadio,
