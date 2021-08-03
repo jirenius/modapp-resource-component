@@ -44,6 +44,14 @@ class CollectionComponent {
 	}
 
 	/**
+	 * Gets the current collection
+	 * @returns {?Collection}
+	 */
+	getCollection() {
+		return this.ml.getCollection();
+	}
+
+	/**
 	 * Returns the wrapped component
 	 * @returns {Component} Wrapped component
 	 */
