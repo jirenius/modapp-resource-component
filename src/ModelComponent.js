@@ -44,6 +44,14 @@ class ModelComponent {
 	}
 
 	/**
+	 * Get model.
+	 * @returns {?Model} Current set model.
+	 */
+	getModel() {
+		return this.ml.getModel();
+	}
+
+	/**
 	 * Returns the wrapped component
 	 * @returns {Component} Wrapped component
 	 */

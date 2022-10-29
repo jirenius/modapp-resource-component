@@ -61,6 +61,14 @@ class ModelListener {
 		return this;
 	}
 
+	/**
+	 * Get model.
+	 * @returns {?Model} Current set model.
+	 */
+	getModel() {
+		return this.model;
+	}
+
 	_setEventListener(on) {
 		if (!this.model || !this.model.on || !this.update) {
 			return;

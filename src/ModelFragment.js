@@ -67,11 +67,11 @@ class ModelFragment {
 					cont.c.unrender();
 				}
 			}
+			this.ml.onUnrender();
 		}
 		this._unrendering = null;
 		this._comps = null;
 		this._el = null;
-		this.ml.onUnrender();
 	}
 
 	_update(m) {

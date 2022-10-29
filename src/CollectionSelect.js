@@ -87,12 +87,16 @@ class CollectionSelect extends RootElem {
 	 * @returns {this}
 	 */
 	setCollection(collection) {
+		collection = collection || null;
+		if (this.collection == collection) {
+			return;
+		}
 		if (!super.getElement()) {
-			this.collection = collection || null;
+			this.collection = collection;
 			return;
 		}
 		this._setEventListener(false);
-		this.collection = collection || null;
+		this.collection = collection;
 		this._update();
 		this._setEventListener(true);
 		return this;
