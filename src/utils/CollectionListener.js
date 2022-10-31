@@ -64,6 +64,14 @@ class CollectionListener {
 		return this;
 	}
 
+	/**
+	 * Gets the current collection
+	 * @returns {?Collection}
+	 */
+	getCollection() {
+		return this.collection;
+	}
+
 	_setEventListener(on) {
 		if (!this.collection || !this.collection.on || !this.update) {
 			return;

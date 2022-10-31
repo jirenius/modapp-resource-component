@@ -16,10 +16,8 @@ class ModelListener {
 	 * @param {Model} [model] Optional model object
 	 * @param {Component} component Component
 	 * @param {ModelListener~updateCallback} update Callback function called on model change and when component is rendered
-	 * @param {object} [opt] Optional parameters
-	 * @param {string} [opt.postrenderUpdate] Flag setting if call to update should be done after render. Defaults to false.
 	 */
-	constructor(model, component, update, opt) {
+	constructor(model, component, update) {
 		this.model = model;
 		this.component = component;
 		this.update = update;
@@ -61,6 +59,14 @@ class ModelListener {
 		}
 
 		return this;
+	}
+
+	/**
+	 * Get model.
+	 * @returns {?Model} Current set model.
+	 */
+	getModel() {
+		return this.model;
 	}
 
 	_setEventListener(on) {

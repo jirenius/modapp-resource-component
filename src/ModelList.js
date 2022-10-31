@@ -149,7 +149,7 @@ class ModelList extends RootElem {
 		const ex = this.exclude;
 		if (ex !== null) {
 			keys = keys.filter(function (key) {
-				return ex.includes(key);
+				return ex.indexOf(key) > -1;
 			});
 		}
 		return keys;
