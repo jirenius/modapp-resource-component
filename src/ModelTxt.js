@@ -40,6 +40,10 @@ class ModelTxt extends Txt {
 		return this;
 	}
 
+	getModel() {
+		return this.ml.getModel();
+	}
+
 	_changeHandler(m, c, changed) {
 		this.setText(this.update(m, c, changed));
 	}
