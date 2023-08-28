@@ -127,7 +127,7 @@ class ModelFragment {
 			let cont = this._comps[k];
 			if (cont.c) {
 				this._unrendering[k] = cont;
-				let promise = onRemove(cont.c, () => this._unrenderCont(cont));
+				let promise = onRemove(cont.c, () => this._unrenderCont(k, cont));
 				// Legacy support for promises.
 				if (promise && typeof promise.then == 'function') {
 					promise.then(() => this._unrendered(k, cont));
