@@ -12,7 +12,7 @@ class ModelFragment {
 	 * @param {function} factory Component factory with the signature: (key, value) => Component
 	 * @param {object} [opt] Optional parameters
 	 * @param {function} [opt.onAdd] Callback called to render the component on add. Can be used for animation. Defaults to (c, el) => c.render(el)
-	 * @param {function.<Promise>} [opt.onRemove] Callback called to eventually unrender the component on remove. Defaults to (c) => c.unrender()
+	 * @param {function} [opt.onRemove] Callback called to eventually unrender the component on remove. Defaults to (c, unrender) => unrender()
 	 */
 	constructor(model, factory, opt) {
 		if (typeof model === 'function') {
@@ -53,13 +53,15 @@ class ModelFragment {
 		this._unrendering = {};
 		this._el = el;
 		this.ml.onRender();
-		// [TODO] Return a document fragment with all the rendered elements.
 	}
 
 	unrender() {
 		if (this._el) {
 			for (let k in this._unrendering) {
-				this._unrendering[k].c.unrender();
+				let cont = this._unrendering[k];
+				if (cont.c) {
+					cont.c.unrender();
+				}
 			}
 			for (let k in this._comps) {
 				let cont = this._comps[k];
@@ -81,7 +83,7 @@ class ModelFragment {
 			? m.props
 			: m;
 		let onAdd = (this.ml.rendered && this.opt.onAdd) || ((c, el) => c.render(el));
-		let onRemove = (this.ml.rendered && this.opt.onRemove) || (c => c.unrender());
+		let onRemove = (this.ml.rendered && this.opt.onRemove) || ((c, unrender) => unrender());
 
 		// Render components
 		if (p) {
@@ -95,8 +97,13 @@ class ModelFragment {
 				// Unrender previous component on value change
 				if (cont && cont.v !== v) {
 					if (cont.c) {
-						Promise.resolve(onRemove(cont.c)).then(() => this._unrendered(k, cont));
-						this._unrendering[k] = cont;
+						let oldCont = cont;
+						this._unrendering[k] = oldCont;
+						let promise = onRemove(oldCont.c, () => this._unrenderCont(k, oldCont));
+						// Legacy support for promises.
+						if (promise && typeof promise.then == 'function') {
+							promise.then(() => this._unrendered(k, oldCont));
+						}
 					}
 					cont = null;
 				}
@@ -119,13 +126,27 @@ class ModelFragment {
 			}
 			let cont = this._comps[k];
 			if (cont.c) {
-				Promise.resolve(onRemove(cont.c)).then(() => this._unrendered(k, cont));
 				this._unrendering[k] = cont;
+				let promise = onRemove(cont.c, () => this._unrenderCont(cont));
+				// Legacy support for promises.
+				if (promise && typeof promise.then == 'function') {
+					promise.then(() => this._unrendered(k, cont));
+				}
 			}
 			delete this._comps[k];
 		}
 	}
 
+	_unrenderCont(k, cont) {
+		if (this._unrendering && this._unrendering[k] == cont) {
+			if (cont.c) {
+				cont.c.unrender();
+			}
+			delete this._unrendering[k];
+		}
+	}
+
+	// Legacy support for promises.
 	_unrendered(k, cont) {
 		if (this._unrendering && this._unrendering[k] == cont) {
 			delete this._unrendering[k];
