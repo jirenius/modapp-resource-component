@@ -5,6 +5,19 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
+  "exports": {
+    ".": {
+      "import": "./es/index.js",
+      "require": "./lib/index.js",
+      "default": "./lib/index.js"
+    },
+    "./jsx": {
+      "import": "./es/jsx/index.js",
+      "require": "./lib/jsx/index.js",
+      "default": "./lib/jsx/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist",
     "lib",
@@ -19,7 +32,8 @@
     "build:umd": "cross-env BABEL_ENV=es NODE_ENV=development node_modules/.bin/rollup src/index.js --config --sourcemap --file dist/modapp-resource-component.js",
     "build:umd:min": "cross-env BABEL_ENV=es NODE_ENV=production rollup src/index.js --config --file dist/modapp-resource-component.min.js",
     "eslint": "eslint src/**/*.js",
-    "test": "npm run eslint"
+    "test:unit": "rimraf .test-lib && cross-env BABEL_ENV=commonjs babel src --out-dir .test-lib && node test/jsx.test.js",
+    "test": "npm run eslint && npm run test:unit"
   },
   "repository": {
     "type": "git",

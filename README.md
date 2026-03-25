@@ -26,6 +26,39 @@ let txt = new ModelTxt({ foo: "Hello World!" }, m => m.foo);
 txt.render(document.body);
 ```
 
+JSX wrappers are available as an opt-in entrypoint:
+
+```javascript
+import { ModelTxt, ModelComponent } from 'modapp-resource-component/jsx';
+```
+
+Keep Babel's automatic JSX runtime pointed at `modapp-base-component/jsx`:
+
+```json
+{
+	"presets": [
+		["@babel/preset-react", {
+			"runtime": "automatic",
+			"importSource": "modapp-base-component/jsx"
+		}]
+	]
+}
+```
+
+Example:
+
+```javascript
+import { Txt } from 'modapp-base-component/jsx';
+import { ModelTxt, ModelComponent } from 'modapp-resource-component/jsx';
+
+let txt = <ModelTxt model={{ foo: "Hello" }} update={m => m.foo} />;
+let wrapped = <ModelComponent
+	model={{ foo: "Hi" }}
+	update={(m, c) => c.setText(m.foo)}>
+	<Txt />
+</ModelComponent>;
+```
+
 All components follows [modapp](https://github.com/jirenius/modapp)'s [component interface](#Component):
 
 <a name="Component"></a>
@@ -63,4 +96,3 @@ Only called after render and never called two times in succession without a call
 
 **Kind**: instance method of [<code>Component</code>](#Component)  
 <a name="Component+dispose"></a>
-
